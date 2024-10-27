@@ -1,0 +1,23 @@
+[
+    {
+        "id": "fc87760ebcebb688",
+        "type": "function",
+        "z": "57d1f996bebf3d1c",
+        "name": "Status # to object",
+        "func": "node.status({ fill: 'green', shape: 'dot', text: `${msg.payload.status}` });\n\nswitch (msg.payload.status) {\n    case 0: // \"unbekannt\":\n        msg.payload.status = NaN;\n        break;\n    case 1: //\"standby\":\n        msg.payload.status = 6;\n        break;\n    case \"Plugged In\": //\"connected\":\n        msg.payload.status = 1;\n        break;\n    case 3: //\"start\":\n        msg.payload.status = 21;\n        break;\n    case 4: //\"charging\":\n        msg.payload.status = 2;\n        break;\n    case 5: //\"start fail\":\n        msg.payload.status = 8;\n        break;\n    case 6: //\"charging end\":\n        msg.payload.status = 3;\n        break;\n    case 7: //\"charger system fail\":\n        msg.payload.status = 8;\n        break;\n    case 8: //\"appointment\":\n        msg.payload.status = 5;\n        break;\n    case 9: //\"firmware upgrade\":\n        msg.payload.status = 8;\n        break;\n    case 10: //\"power on\":\n        msg.payload.status = 6;\n        break;\n    case 31: //\"station blocked\":\n        msg.payload.status = 8;\n        break;\n    default:\n        msg.payload.status = 0;\n}\n\nnode.status({ fill: 'green', shape: 'dot', text: `${msg.payload.status}` });\n\nvar payl = { value: msg.payload.status }\nmsg.payload = payl;\nmsg.attribute = 'Status';\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 920,
+        "wires": [
+            [
+                "1408bbb25c0eca38",
+                "3741f33d86b6c62b"
+            ]
+        ]
+    }
+]
